@@ -1,0 +1,72 @@
+$color1: rgb(116, 207, 230);
+$color2: white;
+$color3: rgb(0, 255, 55);
+$color4: rgb(253, 83, 53);
+%inheritance {
+    color: $color4;
+}
+%inherit{
+    border: 2px solid rgb(238, 232, 232);
+    padding: 5px;
+    text-align: center;
+}
+table {
+    border: 2px solid $color2;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td,th{   
+    @extend %inherit;
+}
+th{
+    @extend %inheritance;
+       
+}
+td {
+    color:$color2;
+}
+
+.index {
+    background-image: url(bg.jpg);
+    color:$color3;
+    text-align:center;
+    font-size: xx-large;
+    /* background-position: center; */
+}
+.bg{
+    background-image: url(inter.jpg);
+    /* background-position: center; */
+}
+.img {
+    background-image: url(profi.jpg);
+}
+.imge{
+    background-image: url(project.jpg);
+}
+.indexh1{
+    color: $color3;
+    text-align: center;
+    font-size: larger;
+}
+.indexh2{
+    @extend %inheritance;
+    text-align: center;
+    font-weight: 900;
+    font-family: sans-serif;
+}
+.indexp {
+    color: $color2;
+    text-align: center;
+    font-style: normal;
+    font-family: sans-serif;
+}
+.nav-item:hover {
+    background-color: rgb(67, 207, 218);
+}
+
+@media screen and (max-width:500px) {
+    header {
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png);
+    }
+}

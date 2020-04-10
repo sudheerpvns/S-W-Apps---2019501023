@@ -1,0 +1,70 @@
+th, .indexh2 {
+  color: #fd5335;
+}
+
+td, th {
+  border: 2px solid #eee8e8;
+  padding: 5px;
+  text-align: center;
+}
+
+table {
+  border: 2px solid white;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td {
+  color: white;
+}
+
+.index {
+  background-image: url(bg.jpg);
+  color: #00ff37;
+  text-align: center;
+  font-size: xx-large;
+  /* background-position: center; */
+}
+
+.bg {
+  background-image: url(inter.jpg);
+  /* background-position: center; */
+}
+
+.img {
+  background-image: url(profi.jpg);
+}
+
+.imge {
+  background-image: url(project.jpg);
+}
+
+.indexh1 {
+  color: #00ff37;
+  text-align: center;
+  font-size: larger;
+}
+
+.indexh2 {
+  text-align: center;
+  font-weight: 900;
+  font-family: sans-serif;
+}
+
+.indexp {
+  color: white;
+  text-align: center;
+  font-style: normal;
+  font-family: sans-serif;
+}
+
+.nav-item:hover {
+  background-color: #43cfda;
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png);
+  }
+}
+/*# sourceMappingURL=style.css.map */
