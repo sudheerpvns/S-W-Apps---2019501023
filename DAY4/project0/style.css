@@ -59,7 +59,7 @@ td {
 }
 
 .nav-item:hover {
-  background-color: #43cfda;
+  background-color: white;
 }
 
 @media screen and (max-width: 500px) {
