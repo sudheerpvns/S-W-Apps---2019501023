@@ -6,13 +6,13 @@ REGISTER
 {% block content %}
 
 <h3> Create your Account</h3>
-<form action="/register" method ="post">
+<form action="{{url_for('register')}}" method ="post">
 <div class = "form">
     <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
 </div>
 <div class="form">
     <input class="form-control" name = "password" placeholder="Password" type = "password"/>
 </div>
-<button class ="btn btn-primary" type="submit">Submit</button>
+<button class ="btn btn-primary">Submit</button>
 </form>
 {% endblock %}

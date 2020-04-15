@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block content %}
+<h3>THe following is the list of users:</h3>
+<ul>
+    {%for i in name: %}
+        <li>{{i}}</li>
+    {%endfor%}
+</ul>
+{% endblock %}
