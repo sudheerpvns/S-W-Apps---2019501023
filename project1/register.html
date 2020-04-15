@@ -1,0 +1,17 @@
+{% block title %}
+REGISTER
+{% endblock %}
+
+{% block content %}
+
+<h3> Create your Account</h3>
+<form action="/register" method ="post">
+<div class = "form">
+    <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
+</div>
+<div class="form">
+    <input class="form-control" name = "password" placeholder="Password" type = "password"/>
+</div>
+<button class ="btn btn-primary" type="submit">Register</button>
+</form>
+{% endblock %}
