@@ -51,22 +51,26 @@ def register():
         pass1 = request.form.get("password")
         date_time = datetime.datetime.now()
         emails = user.query.filter_by(mail_id = mailid).first()
-        if emails is None:
-            new_user = user(user_name = username, mail_id = mailid, password = pass1,date_time=date_time)
-            db.session.add(new_user)
-            db.session.commit()
-            # id11 += 1/
-            return render_template("sucess.html")
+
+        if username != "" and mailid != "" and pass1 != "":
+            if emails is None:
+                new_user = user(user_name = username, mail_id = mailid, password = pass1,date_time=date_time)
+                db.session.add(new_user)
+                db.session.commit()
+                # id11 += 1/
+                return render_template("sucess.html")
+            else:
+                return render_template("error.html", msg= "Email is already registered")
         else:
-            return render_template("error.html", msg= "Email is already registered")
+            return render_template("error.html", msg = "All Fields are required")
 
 @app.route("/admin")
 def admin():
     data = user.query.order_by(user.user_name).all()
     # print(data)
-    data1=[]
+    # data1=[]
     for i in data:
         print(i.user_id,i.user_name,i.date_time)
-        data1.append([i.user_name,i.date_time])
-    return render_template("admin.html",datas=data1)
+        # data1.append([i.user_name,i.date_time])
+    return render_template("admin.html",datas=data)
 
