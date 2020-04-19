@@ -1,34 +1,36 @@
 import os, csv
-
+from application import *
 from sqlalchemy import *
 from sqlalchemy.orm import scoped_session,sessionmaker
 from flask_sqlalchemy import SQLAlchemy
-# from tqdm import tqdm
+from flask import Flask
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine(os.getenv("DATABASE_URL"))
-Session = sessionmaker(bind = engine)
-session = Session()
-Base = declarative_base()
-db = scoped_session(sessionmaker(bind=engine))
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = false
 
-class Book(Base):
-    __tablename__ = "Books"
-    isbn = Column(String, primary_key = True)
-    title = Column(String, nullable = False)
-    author = Column(String, nullable = False)
-    year = Column(String, nullable = False)
+db.init_app(app)
 
-Base.metadata.create_all(engine)
-data = open("books.csv")
+def main():
+    app.app_context().push()
+    db.create_all()
+    data = open("books.csv")
 
-read = csv.reader(data)
+    read = csv.reader(data)
 
-for isbn,title,author,year in read:
-    if isbn == "isbn":
-        continue
-    else:
-        book = Book(isbn= isbn, title = title, author = author, year = year)
-        session.add(book)
-print('added')
-session.commit()
+    for isbn,title,author,year in read:
+        # print(isbn)
+        if isbn == "isbn":
+            continue
+        else:
+            book = Book(isbn= isbn, title = title, author = author, year = year)
+            db.session.add(book)
+    
+    db.session.commit()
+    print('added')
+if __name__ == "__main__":
+    main()
+
+
+

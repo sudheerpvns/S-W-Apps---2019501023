@@ -24,6 +24,12 @@ Session(app)
 engine = create_engine("postgres://aaazqwvuhlccwa:ea427198712503fdacce5bebdb4ea39407984d8550acd46ac00780e5f77246a2@ec2-54-88-130-244.compute-1.amazonaws.com:5432/dajd9u9u8dgmon")
 db = SQLAlchemy(app)
 
+class Book(db.Model):
+    __tablename__ = "Books"
+    isbn = db.Column(db.String, primary_key = True)
+    title = db.Column(db.String, nullable = False)
+    author = db.Column(db.String, nullable = False)
+    year = db.Column(db.String, nullable = False)
 
 class user(db.Model):
     user_id = db.Column(db.Integer, primary_key = True)
@@ -40,7 +46,7 @@ def index():
 
 @app.route("/register",methods=["POST","GET"])
 def register():
-    # session.clear()
+    session.clear()
     # id11 = 100
     if request.method == "GET":    
         return render_template("register.html")
