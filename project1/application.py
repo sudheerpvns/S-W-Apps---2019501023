@@ -1,7 +1,7 @@
 import os
 import datetime
 import requests
-from flask import Flask, session, render_template,request
+from flask import Flask, session,flash, render_template,request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -24,9 +24,10 @@ Session(app)
 engine = create_engine("postgres://aaazqwvuhlccwa:ea427198712503fdacce5bebdb4ea39407984d8550acd46ac00780e5f77246a2@ec2-54-88-130-244.compute-1.amazonaws.com:5432/dajd9u9u8dgmon")
 db = SQLAlchemy(app)
 
+
 class user(db.Model):
     user_id = db.Column(db.Integer, primary_key = True)
-    user_name =db.Column(db.String(100), nullable = False)
+    user_name =db.Column(db.String(100), nullable = False, unique = True)
     mail_id = db.Column(db.String(100), unique= True,nullable = False)
     password = db.Column(db.String(100),nullable = False)
     date_time = db.Column(db.Date, nullable = False)
@@ -60,9 +61,11 @@ def register():
                 # id11 += 1/
                 return render_template("sucess.html")
             else:
-                return render_template("error.html", msg= "Email is already registered")
+                flash("Email is already registered")
+                return render_template("register.html")
         else:
-            return render_template("error.html", msg = "All Fields are required")
+            flash("All Fields are Required")
+            return render_template("register.html")
 
 @app.route("/admin")
 def admin():
@@ -74,3 +77,29 @@ def admin():
         # data1.append([i.user_name,i.date_time])
     return render_template("admin.html",datas=data)
 
+@app.route("/login",methods=["POST","GET"])
+def login():
+    session.clear()
+    if request.method == "GET":
+        return render_template("login.html")
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        result = user.query.filter_by(user_name = username).first()
+        if result is None:
+            flash("User not found!!!")
+            flash("If you are new user goto Register tab")
+            return render_template("login.html")
+        else:
+            if password == result.password:
+                session["user_id"] = result.user_id   
+                session["user_name"] = result.user_name
+                return render_template("Userhome.html")
+            else:
+                flash("Invalid Password")
+                return render_template("login.html")
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("You are Logged out see you soon")
+    return render_template("index.html")
