@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+LOGIN
+{% endblock %}
+
+{% block content %}
+
+<h3> Enter your Credentials</h3>
+<form action="{{url_for('login')}}" method ="post">
+<div class = "form">
+    <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
+</div>
+<div class="form">
+    <input class="form-control" name = "password" placeholder="Password" type = "password"/>
+</div>
+<button class ="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
