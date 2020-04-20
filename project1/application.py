@@ -42,7 +42,7 @@ db.create_all()
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("register.html")
 
 @app.route("/register",methods=["POST","GET"])
 def register():
@@ -87,25 +87,25 @@ def admin():
 def login():
     session.clear()
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("register.html")
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
         result = user.query.filter_by(user_name = username).first()
         if result is None:
-            flash("User not found!!!")
-            flash("If you are new user goto Register tab")
-            return render_template("login.html")
+            flash("Invalid Username, User is not found!!!")
+            flash("If you are new user, please Sign up")
+            return render_template("register.html")
         else:
             if password == result.password:
                 session["user_id"] = result.user_id   
                 session["user_name"] = result.user_name
                 return render_template("Userhome.html")
             else:
-                flash("Invalid Password")
-                return render_template("login.html")
+                flash("Wrong Password please retry")
+                return render_template("register.html")
 @app.route("/logout")
 def logout():
     session.clear()
-    flash("You are Logged out see you soon")
-    return render_template("index.html")
+    flash("You are Logged out, see you soon!!")
+    return render_template("register.html")
