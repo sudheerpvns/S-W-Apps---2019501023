@@ -3,19 +3,34 @@
 REGISTER
 {% endblock %}
 
-{% block content %}
+{%block content%}
+<h3> Login with your credentials if you're existing user else Sign up</h3>
+<h4>   </h4>
+<!-- <form action= method ="post"> -->
 
-<h3> Create your Account</h3>
-<form action="{{url_for('register')}}" method ="post">
-<div class = "form">
-    <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
+<!-- <button class ="btn btn-primary">Submit</button> -->
+<!-- </form> -->
+<div class="text-center">
+    <form class="form-choose" action="{{url_for('register')}}" method = "post" style="float:right; width:50%; margin-right:-20px;">
+        <div>
+            <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
+        </div>
+        <div>
+            <input = autocomplete="off" autofocus class="form-control" name = "mail_id" placeholder="Mail_Id" type = "text"/>
+        </div>
+        <div>
+            <input class="form-control" name = "password" placeholder="Password" type = "password"/>
+        </div>
+		<button class="btn btn-lg btn-primary btn-block" type = "submit">Sign up</button>
+	</form>
+    <form class="form-choose" action="{{url_for('login')}}" method ="post" style="float:left; width:50%; margin-left:-20px;">
+        <div >
+            <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
+        </div>
+        <div>
+            <input class="form-control" name = "password" placeholder="Password" type = "password"/>
+        </div>
+		<button class="btn btn-lg btn-primary btn-block" >Log in</button>
+	</form>
 </div>
-<div class = "form">
-    <input = autocomplete="off" autofocus class="form-control" name = "mail_id" placeholder="Mail_Id" type = "text"/>
-</div>
-<div class="form">
-    <input class="form-control" name = "password" placeholder="Password" type = "password"/>
-</div>
-<button class ="btn btn-primary">Submit</button>
-</form>
 {% endblock %}
