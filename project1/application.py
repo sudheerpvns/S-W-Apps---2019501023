@@ -40,6 +40,14 @@ class user(db.Model):
     password = db.Column(db.String(100),nullable = False)
     date_time = db.Column(db.Date, nullable = False)
 
+class rating(db.Model):
+    __tablename__ = 'Rating'
+    id = db.Column(db.Integer, primary_key = True)    
+    user_name = db.Column(db.String)
+    isbn = db.Column(db.String)
+    rating = db.Column(db.Integer)
+    review = db.Column(db.String)
+
 db.create_all()
 
 @app.route("/")
@@ -102,7 +110,7 @@ def login():
             if password == result.password:
                 session["user_id"] = result.user_id   
                 session["user_name"] = result.user_name
-                return render_template("Userhome.html")
+                return render_template("userhome.html")
             else:
                 flash("Wrong Password please retry")
                 return render_template("register.html")
@@ -111,3 +119,10 @@ def logout():
     session.clear()
     flash("You are Logged out, see you soon!!")
     return render_template("register.html")
+
+@app.route("/bookpage", methods=["GET", "POST"])
+def bookpage():
+    isbn = request.form.get("isbn")
+    book = db.execute(
+        "SELECT title, author, pub_year FROM books WHERE isbn= :isbn", {"isbn": isbn}).fetchall()
+    return render_template("book.html", title=book[0][0], author=book[0][1], year=book[0][2])

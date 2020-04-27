@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+    .container {
+        padding: 16px;
+        background-color: white;
+        border-radius: 10px;
+        width: 60%;
+        margin: auto;
+    }
+
+{% endblock %}
+
+{% block heading %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class = "bookdetails">
+            <h1>{{title}}</h1>
+            <h4>Author: {{author}}<br>Published Year:{{year}}</h4>
+        </div>
+    </div>
+    <div class="radio">
+        <label>Rating:</label>
+        <label><input type="radio" name="optradio" checked>1</label>
+        <label><input type="radio" name="optradio">2</label>
+        <label><input type="radio" name="optradio">3</label>
+        <label><input type="radio" name="optradio">4</label>
+        <label><input type="radio" name="optradio">5</label>
+      </div>
+    <div class="form-group">
+        <label>Review:</label>
+        <textarea class="form-control" rows="7" ></textarea>
+      </div>
+{% endblock %}
