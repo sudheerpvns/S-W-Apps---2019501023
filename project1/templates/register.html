@@ -5,21 +5,17 @@ REGISTER
 
 {%block content%}
 <h3> Login with your credentials if you're existing user else Sign up</h3>
-<h4>   </h4>
-<!-- <form action= method ="post"> -->
 
-<!--  -->
-<!-- </form> -->
-<div class="text-center">
-    <form class="form-choose" action="{{url_for('register')}}" method = "post" style="float:right; width:50%; margin-right:-20px;">
+<div class="text-center" >
+    <form class="form-choose" name = "reg" action="{{url_for('register')}}" method = "post" style="float:right; width:50%; margin-right:-20px;">
         <div>
-            <input = autocomplete="off" autofocus class="form-control" name = "username" placeholder="Username" type = "text"/>
+            <input = autocomplete="off" autofocus class="form-control" id = "username" name = "username" placeholder="Username" type = "text"/>
         </div>
         <div>
             <input = autocomplete="off" autofocus class="form-control" name = "mail_id" placeholder="Mail_Id" type = "text"/>
         </div>
         <div>
-            <input class="form-control" name = "password" placeholder="Password" type = "password"/>
+            <input class="form-control" name = "password" placeholder="Password" id = "password" type = "password"/>
         </div>
 		<button class="btn btn-lg btn-primary btn-block" type = "submit">Sign up</button>
 	</form>
