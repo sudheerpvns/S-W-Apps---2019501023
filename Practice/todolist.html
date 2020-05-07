@@ -1,0 +1,56 @@
+<html>
+  <head>
+      <style>
+            html {
+                font-family: "Avenir Next", Helevetica, sans-serif;
+                text-align: center;
+            }
+
+            body {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            input {
+                padding-top: 30px;
+                width: 500px;
+                height: 60px;
+                font-size: 40px;
+                border: 0;
+            }
+
+            input:focus {
+                outline: none;
+            }
+
+            li {
+                text-align: left;
+                font-size: 40px;
+                list-style: none;
+                margin: 0;
+            }
+            #submit {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+            }
+      </style>
+  </head>
+    <title>
+      To-do List
+    </title>
+  <body>
+     <h3 align = 'center'>TO DO LIST</h3> 
+    <input id="input" placeholder="Enter a task to be added" align="middle">
+    <button id = "submit" type ="submit">Add</button>
+    <ul align = 'center' id="list">
+       <p>The following are the tasks</p>  
+    </ul>
+  </body>
+  <script src="todo.js"></script>
+</html>
